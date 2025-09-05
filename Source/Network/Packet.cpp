@@ -27,35 +27,35 @@ char Packet::operator[](short pos)
 {
     return buffer[pos];
 }
-unsigned short Packet::getUInt16(short pos)
+unsigned short Packet::readUInt16(short pos)
 {
     return *reinterpret_cast<unsigned short *>(buffer + pos);
 }
-short Packet::getInt16(short pos)
+short Packet::readInt16(short pos)
 {
     return *reinterpret_cast<short *>(buffer + pos);
 }
-UInt24 Packet::getUInt24(short pos)
+UInt24 Packet::readUInt24(short pos)
 {
     return *reinterpret_cast<UInt24 *>(buffer + pos);
 }
-Int24 Packet::getInt24(short pos)
+Int24 Packet::readInt24(short pos)
 {
     return *reinterpret_cast<Int24 *>(buffer + pos);
 }
-unsigned int Packet::getUInt32(short pos)
+unsigned int Packet::readUInt32(short pos)
 {
     return *reinterpret_cast<unsigned int *>(buffer + pos);
 }
-int Packet::getInt32(short pos)
+int Packet::readInt32(short pos)
 {
     return *reinterpret_cast<int *>(buffer + pos);
 }
-long long Packet::getInt64(short pos)
+long long Packet::readInt64(short pos)
 {
     return *reinterpret_cast<long long *>(buffer + pos);
 }
-unsigned long long Packet::getUInt64(short pos)
+unsigned long long Packet::readUInt64(short pos)
 {
     return *reinterpret_cast<unsigned long long *>(buffer + pos);
 }
@@ -63,9 +63,9 @@ bool Packet::isMagic(short pos)
 {
     return memcmp(buffer + pos, magic, 16) == 0;
 }
-string Packet::getString(short pos)
+string Packet::readString(short pos)
 {
-    short stringSize = getUInt16(pos);
+    short stringSize = readUInt16(pos);
     return string(buffer + pos + 2, stringSize);
 }
 char *Packet::getBuffer()
