@@ -49,7 +49,7 @@ Socket &Socket::getInstance()
     return *instance;
 }
 
-char *Socket::WaitPacket()
+char *Socket::WaitPacket(short &packetSize)
 {
     if (!initialized)
     {
@@ -73,6 +73,7 @@ char *Socket::WaitPacket()
     char *result = new char[bytesReceived];
     memcpy(result, buffer, bytesReceived);
     delete[] buffer;
+    packetSize = bytesReceived;
     return result;
 }
 

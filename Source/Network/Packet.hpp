@@ -12,7 +12,8 @@ class Packet
 public:
     Packet(char *buffer, short size);
     ~Packet();
-    
+    Packet &operator=(const Packet &packet);
+
     unsigned short getUInt16(short pos);
     short getInt16(short pos);
     unsigned int getUInt32(short pos);
@@ -22,9 +23,12 @@ public:
     unsigned long long getUInt64(short pos);
     long long getInt64(short pos);
     std::string getString(short pos);
-    
+
     char operator[](short pos);
     bool isMagic(short pos);
+
+    char* getBuffer();
+    short getSize();
 };
 
 #endif

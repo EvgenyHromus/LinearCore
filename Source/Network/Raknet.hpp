@@ -3,13 +3,16 @@
 
 #include <vector>
 #include <Network/Packet.hpp>
+#include <Network/FrameSetPacket.cpp>
 #include <Network/Socket.hpp>
 
-class Raknet { // ИНТЕРНЕТ ДЛЯ РАКОВ!!!
+class Raknet {
 private:
-    static Raknet* instance;
+    static Raknet* pInstance;
+    static bool queueEditing;
 
-    
+    static vector<Packet> packetQueue;
+    static vector<Packet> packetQueueProcess;
 
     Raknet();
     Raknet(const Raknet&) = delete;
@@ -18,6 +21,9 @@ private:
 public:
     ~Raknet();
     static Raknet& getInstance();
+    
+    void process();
+    void pushPacket(Packet packet);
 };
 
 #endif

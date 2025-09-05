@@ -1,8 +1,6 @@
 #include <Network/Packet.cpp>
+#include <Other/Int24.hpp>
 #include <vector>
-
-struct uint24_t { unsigned long v:24; };
-typedef struct uint24_t __attribute__((packed)) uint24_t;
 
 using std::vector;
 

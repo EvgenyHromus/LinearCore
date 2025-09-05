@@ -6,6 +6,7 @@
 Network/
 - Packet
 - Socket
+- NetworkHandler
 
 Другие даже смысле нету смотреть сразу скажу
 
@@ -13,6 +14,3 @@ Network/
 Network/
 - Raknet
 - FrameSetPacket
-- RaknetPacket/
-- - UnconnectedPingPacket
-- - UnconnectedPongPacket
