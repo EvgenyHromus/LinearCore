@@ -1,5 +1,7 @@
 #include "Raknet.hpp"
 
+#include "Json.hpp"
+
 Raknet *Raknet::pInstance = nullptr;
 
 Raknet::Raknet()
@@ -21,6 +23,8 @@ Raknet &Raknet::getInstance()
 
 void Raknet::process()
 {
+    packetQueueProcess.clear();
+    fragmentPackets.clear();
     while (true)
     {
         if (!queueEditing)
@@ -31,6 +35,18 @@ void Raknet::process()
             queueEditing = false;
             return;
         }
+    }
+    int packetQueueProcessSize = packetQueueProcess.size();
+    for (int i = 0; i < packetQueueProcessSize; ++i) {
+        if (packetQueueProcess[i][0] >= 0x80 && packetQueueProcess[i][0] <= 0x8D) {
+            FrameSetPacket thisPacket = FrameSetPacket(packetQueueProcess[i]);
+            json thisData = thisPacket.getData();
+            short framesCount = thisData["Frames"].size();
+            for (short i = 0; i < framesCount; ++i) {
+
+            }
+        }
+        E
     }
 }
 

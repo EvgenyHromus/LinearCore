@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <Network/Packet.hpp>
-#include <Network/FrameSetPacket.cpp>
+#include <Network/FrameSetPacket.hpp>
 #include <Network/Socket.hpp>
 
 class Raknet {
@@ -13,6 +13,7 @@ private:
 
     static vector<Packet> packetQueue;
     static vector<Packet> packetQueueProcess;
+    static vector<FrameSetPacket> fragmentPackets;
 
     Raknet();
     Raknet(const Raknet&) = delete;

@@ -11,11 +11,6 @@ class FrameSetPacket
     Packet packet;
     json data;
 
-    bool doReliable;
-    bool doSequenced;
-    bool doOrdered;
-    bool doFragmented;
-
     void decodePacket()
     {
         data.clear();
@@ -61,28 +56,17 @@ class FrameSetPacket
 public:
     FrameSetPacket(char *buffer, short size) : packet(Packet{buffer, size})
     {
+        decodePacket();
     }
     FrameSetPacket(Packet packet) : packet(packet)
     {
+        decodePacket();
     }
     Packet getPacket()
     {
         return this->packet;
     }
-    bool isReliable()
-    {
-        return doReliable;
-    }
-    bool isSequenced()
-    {
-        return doSequenced;
-    }
-    bool isOrdered()
-    {
-        return doOrdered;
-    }
-    bool isFragmented()
-    {
-        return doFragmented;
+    json getData() {
+        return this-data;
     }
 };
